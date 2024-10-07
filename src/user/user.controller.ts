@@ -1,4 +1,4 @@
-import { Controller, Get,Param,Query } from '@nestjs/common';
+import { Controller, Delete, Get,Param,Query } from '@nestjs/common';
 import { UserService } from './user.service';
 
 @Controller('user')
@@ -21,5 +21,10 @@ export class UserController {
     @Get('/create')
     create() {
         return this.userService.create();
+    }
+    @Delete(':id/delete')
+    deleteUser(@Param('id')id:string) {
+        const userId = parseInt(id,10)
+        return this.userService.deleteUser(userId);
     }
 }
